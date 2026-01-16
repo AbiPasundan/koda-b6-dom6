@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Algoritma 3 gelas</title>
     <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
       .container {
         display: flex;
         justify-content: center;
@@ -48,7 +52,7 @@
     <div class="container">
       <div id="satu" class="aqua"></div>
       <div id="dua" class="blue"></div>
-      <div id="tiga" class="tiga"></div>
+      <div id="tiga" class=""></div>
     </div>
 
     <script>
@@ -56,16 +60,48 @@
       const dua = document.getElementById("dua");
       const tiga = document.getElementById("tiga");
 
-      const arr = [satu, dua, tiga]
-    //   console.log(arr, arr[0]);
+      const gelas = [satu, dua, tiga];
 
-    for (let i = 0; i < arr.length; i++) {
-        arr[i].addEventListener("click", () => {
-            arr[i].classList.toggle("aqua");
-        })
-        
-    }
-      
-      </script>
+      let selectedColor = null;
+
+      // arr.forEach((glass) => {
+      //   glass.addEventListener("click", () => {
+      //     if (glass.classList.contains("aqua")) {
+      //       glass.className = "";
+      //       aquaSelected = true;
+      //     } else if (glass.className === "" && aquaSelected) {
+      //       glass.className = "aqua";
+      //       aquaSelected = false;
+      //     } else if (glass.classList.contains("blue")) {
+      //       alert("Gelasku berisi air biru, tidak bisa diisi air aqua!");
+      //     }
+      //     if (glass.classList.contains("blue")) {
+      //       glass.className = "";
+      //       blueSelected = true;
+      //     } else if (glass.className === "" && blueSelected) {
+      //       glass.className = "blue";
+      //       blueSelected = false;
+      //     } else if (glass.classList.contains("aqua")) {
+      //       alert("Gelasku berisi air biru, tidak bisa diisi air aqua!");
+      //     }
+      //   });
+      // });
+
+      gelas.forEach((glass) => {
+        glass.addEventListener("click", () => {
+          if ( !selectedColor && (glass.classList.contains("aqua") || glass.classList.contains("blue")) ) {
+            selectedColor = glass.className;
+            glass.className = "";
+            return;
+          }
+
+          if (selectedColor && glass.className === "") {
+            glass.className = selectedColor;
+            selectedColor = null;
+            return;
+          }
+        });
+      });
+    </script>
   </body>
 </html>
